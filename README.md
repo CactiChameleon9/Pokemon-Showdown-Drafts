@@ -2,6 +2,8 @@
 
 A Gnome styled godot app in which to players (on the same network) can select a pokemon team using a draft system.
 
+![image](https://user-images.githubusercontent.com/51231053/169382437-e28c3bb1-44a9-493d-8457-dcc7bd724768.png)
+
 
 ## How it works
 1. Players connect (same network only, for now. Solutions like tailscale could work for over the internet)
