@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/DuelButtonSelection.gd" type="Script" id=2]
+
+[node name="DuelButtonSelection" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+
+[node name="HContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Vertical Border1" type="Control" parent="HContainer"]
+margin_right = 1024.0
+margin_bottom = 84.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="VContainer" type="HBoxContainer" parent="HContainer"]
+margin_top = 88.0
+margin_right = 1024.0
+margin_bottom = 511.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Horizontal Border1" type="Control" parent="HContainer/VContainer"]
+process_priority = 1
+margin_right = 31.0
+margin_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.07
+
+[node name="Button1" type="Button" parent="HContainer/VContainer"]
+margin_left = 35.0
+margin_right = 492.0
+margin_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Horizontal Border2" type="Control" parent="HContainer/VContainer"]
+process_priority = 1
+margin_left = 496.0
+margin_right = 527.0
+margin_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.07
+
+[node name="Button2" type="Button" parent="HContainer/VContainer"]
+margin_left = 531.0
+margin_right = 988.0
+margin_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Horizontal Border3" type="Control" parent="HContainer/VContainer"]
+process_priority = 1
+margin_left = 992.0
+margin_right = 1024.0
+margin_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.07
+
+[node name="Vertical Border2" type="Control" parent="HContainer"]
+margin_top = 515.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[connection signal="pressed" from="HContainer/VContainer/Button1" to="." method="_emit_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="HContainer/VContainer/Button2" to="." method="_emit_pressed" binds= [ 2 ]]

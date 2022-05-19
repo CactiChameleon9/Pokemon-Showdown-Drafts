@@ -1,0 +1,13 @@
+mono_crash*
+cacheDir
+*.apk*
+*.x86_64*
+.git
+.import
+.mono
+
+
+assets/Pokemon/*.png
+assets/Pokemon/*.import
+assets/PokemonMini/*.png
+assets/PokemonMini/*.import

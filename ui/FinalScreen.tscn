@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Kenney Future Narrow.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://ui/DuelButtonSelection.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/FinalScreen.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="FinalScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -5.0
+rect_pivot_offset = Vector2( -427, -36 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 4 )
+text = "bjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooobjoooooooooooooooooooooo"
+
+[node name="HBox" type="HBoxContainer" parent="."]
+anchor_left = 0.00981354
+anchor_top = 0.0166667
+anchor_right = 0.990186
+anchor_bottom = 0.983333
+margin_top = -9.53674e-07
+margin_right = 5.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="FinalTextPadding" type="Control" parent="HBox"]
+margin_right = 29.0
+margin_bottom = 579.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.03
+
+[node name="FinalText" type="RichTextLabel" parent="HBox"]
+margin_left = 33.0
+margin_right = 1003.0
+margin_bottom = 579.0
+focus_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 1 )
+text = "Pelipper @ Damp Rock  
+Ability: Drizzle  
+EVs: 248 HP / 184 SpA / 76 Spe  
+Timid Nature  
+- Hurricane  
+- Scald  
+- U-turn  
+- Roost  
+
+Lanturn @ Choice Specs  
+Ability: Volt Absorb  
+EVs: 252 HP / 4 Def / 252 SpA  
+Quiet Nature  
+IVs: 0 Atk / 0 Spe  
+- Volt Switch  
+- Discharge  
+- Scald  
+- Ice Beam  
+
+Oricorio @ Life Orb  
+Ability: Dancer  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Revelation Dance  
+- Air Slash  
+- Roost  
+- Hidden Power [Grass]  
+
+Noctowl @ Leftovers  
+Ability: Tinted Lens  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
+IVs: 0 Atk  
+- Calm Mind  
+- Roost  
+- Hyper Voice  
+- Psychic  
+
+Jumpluff @ Focus Sash  
+Ability: Infiltrator  
+EVs: 4 HP / 252 Atk / 252 Spe  
+Jolly Nature  
+- Acrobatics  
+- U-turn  
+- Aromatherapy  
+- Leech Seed  
+
+Vigoroth @ Eviolite  
+Ability: Vital Spirit  
+EVs: 4 HP / 252 Atk / 252 Spe  
+Jolly Nature  
+- Slack Off  
+- Yawn  
+- Return  
+- Brick Break  "
+selection_enabled = true
+
+[node name="HBoxContainer" type="AspectRatioContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -103.0
+margin_right = -10.0
+ratio = 3.2
+alignment_horizontal = 2
+
+[node name="DuelButtonSelection" parent="HBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 669.4
+margin_right = 999.0
+margin_bottom = 103.0
+button1_text = "Reset"
+button2_text = "Copy"
+
+[connection signal="first_pressed" from="HBoxContainer/DuelButtonSelection" to="." method="reset_pressed"]
+[connection signal="second_pressed" from="HBoxContainer/DuelButtonSelection" to="." method="copy_pressed"]

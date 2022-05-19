@@ -1,0 +1,384 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Pokemon.gd" type="Script" id=1]
+[ext_resource path="res://assets/Theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/Pokemon/047.png" type="Texture" id=3]
+
+[node name="Pokemon" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="NameLabel" type="Label" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 153.0
+margin_bottom = 47.0
+text = "Parasect"
+
+[node name="HBContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PokemonImage" type="TextureRect" parent="HBContainer"]
+margin_right = 566.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.25
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="PokemonDetails" type="ScrollContainer" parent="HBContainer"]
+margin_left = 570.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 454, 0 )
+size_flags_horizontal = 3
+
+[node name="HContainer" type="HBoxContainer" parent="HBContainer/PokemonDetails"]
+margin_right = 454.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Border1" type="Control" parent="HBContainer/PokemonDetails/HContainer"]
+process_priority = 1
+margin_right = 37.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="VContainer" type="VBoxContainer" parent="HBContainer/PokemonDetails/HContainer"]
+margin_left = 41.0
+margin_right = 412.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Border4" type="Control" parent="HBContainer/PokemonDetails/HContainer/VContainer"]
+margin_right = 371.0
+margin_bottom = 2.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="InfoLabel" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer"]
+margin_top = 6.0
+margin_right = 371.0
+margin_bottom = 33.0
+text = "Info"
+
+[node name="AbilityItemPanel" type="PanelContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer"]
+margin_top = 37.0
+margin_right = 371.0
+margin_bottom = 154.0
+size_flags_horizontal = 3
+
+[node name="VContainer" type="VBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/AbilityItemPanel"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 351.0
+margin_bottom = 97.0
+size_flags_horizontal = 3
+
+[node name="AbilityContainer" type="HBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/AbilityItemPanel/VContainer"]
+margin_right = 331.0
+margin_bottom = 27.0
+
+[node name="AbilityLabel" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/AbilityItemPanel/VContainer/AbilityContainer"]
+margin_right = 113.0
+margin_bottom = 27.0
+text = "Ability: "
+
+[node name="Ability" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/AbilityItemPanel/VContainer/AbilityContainer"]
+margin_left = 117.0
+margin_right = 331.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+text = "Effect Spore"
+align = 2
+autowrap = true
+max_lines_visible = 3
+
+[node name="HSeparator" type="HSeparator" parent="HBContainer/PokemonDetails/HContainer/VContainer/AbilityItemPanel/VContainer"]
+margin_top = 31.0
+margin_right = 331.0
+margin_bottom = 46.0
+size_flags_vertical = 3
+
+[node name="ItemContainer" type="HBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/AbilityItemPanel/VContainer"]
+margin_top = 50.0
+margin_right = 331.0
+margin_bottom = 77.0
+
+[node name="ItemLabel" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/AbilityItemPanel/VContainer/ItemContainer"]
+margin_right = 73.0
+margin_bottom = 27.0
+text = "Item: "
+
+[node name="Item" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/AbilityItemPanel/VContainer/ItemContainer"]
+margin_left = 77.0
+margin_right = 331.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+text = "Leftovers"
+align = 2
+autowrap = true
+max_lines_visible = 3
+
+[node name="Border1" type="Control" parent="HBContainer/PokemonDetails/HContainer/VContainer"]
+margin_top = 158.0
+margin_right = 371.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="StatsLabel" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer"]
+margin_top = 164.0
+margin_right = 371.0
+margin_bottom = 191.0
+text = "Stats"
+
+[node name="StatsPanel" type="PanelContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer"]
+margin_top = 195.0
+margin_right = 371.0
+margin_bottom = 392.0
+size_flags_horizontal = 3
+
+[node name="VContainer" type="VBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 351.0
+margin_bottom = 177.0
+size_flags_horizontal = 3
+
+[node name="EVContainer" type="HBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer"]
+margin_right = 331.0
+margin_bottom = 57.0
+
+[node name="EVLabel" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer/EVContainer"]
+margin_top = 15.0
+margin_right = 59.0
+margin_bottom = 42.0
+text = "EVs:"
+
+[node name="Control" type="Control" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer/EVContainer"]
+margin_left = 63.0
+margin_right = 87.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="EVs" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer/EVContainer"]
+margin_left = 91.0
+margin_right = 331.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+text = "252 HP / 88 Def
+160 spd / 4 spa"
+align = 2
+autowrap = true
+max_lines_visible = 3
+
+[node name="HSeparator" type="HSeparator" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer"]
+margin_top = 61.0
+margin_right = 331.0
+margin_bottom = 76.0
+
+[node name="NatureContainer" type="HBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer"]
+margin_top = 80.0
+margin_right = 331.0
+margin_bottom = 107.0
+
+[node name="NatureLabel" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer/NatureContainer"]
+margin_right = 107.0
+margin_bottom = 27.0
+text = "Ability:"
+
+[node name="Control" type="Control" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer/NatureContainer"]
+margin_left = 111.0
+margin_right = 121.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="NaturePlus" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer/NatureContainer"]
+margin_left = 125.0
+margin_right = 230.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+text = "+Atk"
+align = 2
+autowrap = true
+max_lines_visible = 3
+
+[node name="Spacer" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer/NatureContainer"]
+margin_left = 234.0
+margin_right = 258.0
+margin_bottom = 27.0
+text = "    "
+align = 2
+max_lines_visible = 3
+
+[node name="NatureMinus" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer/NatureContainer"]
+margin_left = 262.0
+margin_right = 330.0
+margin_bottom = 27.0
+text = "-Spd"
+align = 2
+
+[node name="HSeparator2" type="HSeparator" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer"]
+margin_top = 111.0
+margin_right = 331.0
+margin_bottom = 126.0
+
+[node name="IVContainer" type="HBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer"]
+margin_top = 130.0
+margin_right = 331.0
+margin_bottom = 157.0
+
+[node name="IVLabel" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer/IVContainer"]
+margin_right = 50.0
+margin_bottom = 27.0
+text = "IVs:"
+
+[node name="Control" type="Control" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer/IVContainer"]
+margin_left = 54.0
+margin_right = 78.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="IVs" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/StatsPanel/VContainer/IVContainer"]
+margin_left = 82.0
+margin_right = 331.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+text = "0 Atk / 0 Spe"
+align = 2
+autowrap = true
+max_lines_visible = 3
+
+[node name="Border2" type="Control" parent="HBContainer/PokemonDetails/HContainer/VContainer"]
+margin_top = 396.0
+margin_right = 371.0
+margin_bottom = 398.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="MovesLabel" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer"]
+margin_top = 402.0
+margin_right = 371.0
+margin_bottom = 429.0
+text = "Moves"
+
+[node name="MovesPanel" type="PanelContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer"]
+margin_top = 433.0
+margin_right = 371.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+
+[node name="HContainer" type="VBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 351.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+
+[node name="MoveContainer1" type="HBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer"]
+margin_right = 331.0
+margin_bottom = 27.0
+
+[node name="MoveLabel1" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer/MoveContainer1"]
+margin_right = 17.0
+margin_bottom = 27.0
+text = "-"
+
+[node name="Move1" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer/MoveContainer1"]
+margin_left = 21.0
+margin_right = 331.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Leech Life"
+align = 2
+
+[node name="MoveContainer2" type="HBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer"]
+margin_top = 31.0
+margin_right = 331.0
+margin_bottom = 58.0
+
+[node name="MoveLabel2" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer/MoveContainer2"]
+margin_right = 17.0
+margin_bottom = 27.0
+text = "-"
+
+[node name="Move2" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer/MoveContainer2"]
+margin_left = 21.0
+margin_right = 331.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Giga Drain"
+align = 2
+
+[node name="MoveContainer3" type="HBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer"]
+margin_top = 62.0
+margin_right = 331.0
+margin_bottom = 89.0
+
+[node name="MoveLabel3" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer/MoveContainer3"]
+margin_right = 17.0
+margin_bottom = 27.0
+text = "-"
+
+[node name="Move3" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer/MoveContainer3"]
+margin_left = 21.0
+margin_right = 331.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Spore"
+align = 2
+
+[node name="MoveContainer4" type="HBoxContainer" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer"]
+margin_top = 93.0
+margin_right = 331.0
+margin_bottom = 120.0
+
+[node name="MoveLabel4" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer/MoveContainer4"]
+margin_right = 17.0
+margin_bottom = 27.0
+text = "-"
+
+[node name="Move4" type="Label" parent="HBContainer/PokemonDetails/HContainer/VContainer/MovesPanel/HContainer/MoveContainer4"]
+margin_left = 21.0
+margin_right = 331.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Recover"
+align = 2
+
+[node name="Border3" type="Control" parent="HBContainer/PokemonDetails/HContainer/VContainer"]
+margin_top = 597.0
+margin_right = 371.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Border2" type="Control" parent="HBContainer/PokemonDetails/HContainer"]
+process_priority = 1
+margin_left = 416.0
+margin_right = 454.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1

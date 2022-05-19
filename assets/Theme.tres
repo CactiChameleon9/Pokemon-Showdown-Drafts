@@ -1,0 +1,147 @@
+[gd_resource type="Theme" load_steps=18 format=2]
+
+[ext_resource path="res://assets/Kenney Future Narrow.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/BackgroundScroll.png" type="Texture" id=2]
+[ext_resource path="res://assets/HoverScroll.png" type="Texture" id=3]
+[ext_resource path="res://assets/ClickedScroll.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.227451, 0.227451, 0.227451, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.270588, 0.270588, 0.270588, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.270588, 0.270588, 0.270588, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.313726, 0.313726, 0.313726, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.313726, 0.313726, 0.313726, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxLine" id=10]
+color = Color( 0.329412, 0.329412, 0.329412, 1 )
+grow_begin = 20.0
+grow_end = 20.0
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.266667, 0.266667, 0.266667, 0 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.411765, 0.611765, 0.909804, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.266667, 0.266667, 0.266667, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.266667, 0.266667, 0.266667, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.313726, 0.313726, 0.313726, 0 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.313726, 0.313726, 0.313726, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.211765, 0.211765, 0.211765, 1 )
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color( 0.211765, 0.211765, 0.211765, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color( 0, 0, 0, 0.0823529 )
+shadow_size = 3
+shadow_offset = Vector2( 0, 2.744 )
+
+[sub_resource type="StyleBoxTexture" id=14]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 10, 77 )
+margin_top = 4.0
+margin_bottom = 4.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id=15]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 10, 77 )
+margin_top = 4.0
+margin_bottom = 4.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id=16]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 10, 77 )
+margin_top = 4.0
+margin_bottom = 4.0
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+use_filter = true
+font_data = ExtResource( 1 )
+
+[resource]
+default_font = SubResource( 1 )
+Button/styles/disabled = SubResource( 4 )
+Button/styles/focus = SubResource( 8 )
+Button/styles/hover = SubResource( 6 )
+Button/styles/normal = SubResource( 4 )
+Button/styles/pressed = SubResource( 7 )
+HSeparator/constants/separation = 15
+HSeparator/styles/separator = SubResource( 10 )
+LineEdit/styles/focus = SubResource( 13 )
+LineEdit/styles/normal = SubResource( 11 )
+LineEdit/styles/read_only = SubResource( 12 )
+Panel/styles/panel = null
+PanelContainer/styles/panel = SubResource( 9 )
+VScrollBar/styles/grabber = SubResource( 14 )
+VScrollBar/styles/grabber_highlight = SubResource( 14 )
+VScrollBar/styles/grabber_pressed = SubResource( 15 )
+VScrollBar/styles/scroll = SubResource( 16 )
+VScrollBar/styles/scroll_focus = null

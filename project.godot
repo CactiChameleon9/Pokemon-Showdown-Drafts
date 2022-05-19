@@ -1,0 +1,43 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Control",
+"class": "Pokemon",
+"language": "GDScript",
+"path": "res://Pokemon.gd"
+} ]
+_global_script_class_icons={
+"Pokemon": ""
+}
+
+[application]
+
+config/name="Pokemon Showdown Drafts"
+run/main_scene="res://Main.tscn"
+run/low_processor_mode=true
+config/icon="res://assets/icon.png"
+
+[autoload]
+
+Global="*res://Global.gd"
+
+[display]
+
+window/handheld/orientation="sensor_portrait"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_clear_color=Color( 0.141176, 0.141176, 0.141176, 1 )
+environment/default_environment="res://assets/default_env.tres"
