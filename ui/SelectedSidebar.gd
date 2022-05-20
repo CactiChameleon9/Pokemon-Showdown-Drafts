@@ -6,6 +6,10 @@ var current_number = 0
 
 
 func set_pokemon(your_name, them_name):
+	
+	if current_number >= 6:
+		current_number = 0
+	
 	current_number += 1
 	var duel_icon = get_node(duel_icons_string % current_number)
 	duel_icon.set_your_image(your_name)

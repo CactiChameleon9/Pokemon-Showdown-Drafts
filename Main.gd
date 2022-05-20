@@ -18,6 +18,7 @@ remote var has_reset : bool = false
 var pkmn_data = []
 var selected_pkmn = []
 
+var is_offline : bool = false
 
 func _ready() -> void:
 	randomize()
@@ -34,6 +35,12 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	
+	if is_offline: # disable all networking waits if offline
+		has_poped_values = true
+		has_chosen_pkmn = true
+		has_reset = true
+	
 	if has_poped_values or get_tree().is_network_server():
 		emit_signal("has_poped_values_true")
 	
@@ -69,7 +76,10 @@ func finished_ui():
 
 
 func select_pkmn():
-	for _i in range(0, 3):
+	duel_button_selection.number_of_buttons = 2 
+	selected_pkmn = [] #reset the selected pkmn
+	
+	while len(selected_pkmn) < 6:
 		
 		#yield until variable change, or carry on if server
 		yield(self, "has_poped_values_true")
@@ -186,9 +196,16 @@ func networking_stuff(is_client : bool, server_address = ""):
 
 
 func user_networking_choice():
+	duel_button_selection.number_of_buttons = 3
+	
 	duel_button_selection.button1_text = "Client"
-	duel_button_selection.button2_text = "Server"
+	duel_button_selection.button2_text = "Offline"
+	duel_button_selection.button3_text = "Server"
 	var choice = yield(duel_button_selection, "pressed")
+	
+	if choice == 2: #offline
+		is_offline = true
+		return
 	
 	var is_client : bool = true if choice == 1 else false
 	

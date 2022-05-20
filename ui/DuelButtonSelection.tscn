@@ -60,6 +60,60 @@ size_flags_vertical = 3
 
 [node name="Horizontal Border3" type="Control" parent="HContainer/VContainer"]
 process_priority = 1
+visible = false
+margin_left = 404.0
+margin_right = 417.0
+margin_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.07
+
+[node name="Button3" type="Button" parent="HContainer/VContainer"]
+visible = false
+margin_left = 421.0
+margin_right = 602.0
+margin_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Horizontal Border4" type="Control" parent="HContainer/VContainer"]
+process_priority = 1
+visible = false
+margin_left = 606.0
+margin_right = 619.0
+margin_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.07
+
+[node name="Button4" type="Button" parent="HContainer/VContainer"]
+visible = false
+margin_left = 623.0
+margin_right = 805.0
+margin_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Horizontal Border5" type="Control" parent="HContainer/VContainer"]
+process_priority = 1
+visible = false
+margin_left = 809.0
+margin_right = 821.0
+margin_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.07
+
+[node name="Button5" type="Button" parent="HContainer/VContainer"]
+visible = false
+margin_left = 825.0
+margin_right = 1007.0
+margin_bottom = 423.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Horizontal BorderFinal" type="Control" parent="HContainer/VContainer"]
+process_priority = 1
 margin_left = 992.0
 margin_right = 1024.0
 margin_bottom = 423.0
@@ -77,3 +131,6 @@ size_flags_stretch_ratio = 0.2
 
 [connection signal="pressed" from="HContainer/VContainer/Button1" to="." method="_emit_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="HContainer/VContainer/Button2" to="." method="_emit_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="HContainer/VContainer/Button3" to="." method="_emit_pressed" binds= [ 3 ]]
+[connection signal="pressed" from="HContainer/VContainer/Button4" to="." method="_emit_pressed" binds= [ 4 ]]
+[connection signal="pressed" from="HContainer/VContainer/Button5" to="." method="_emit_pressed" binds= [ 5 ]]
