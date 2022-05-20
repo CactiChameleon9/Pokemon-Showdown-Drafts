@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://ui/DuelButtonSelection.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/ButtonSelection.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/SelectedSidebar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/FinalScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/AddressDialog.tscn" type="PackedScene" id=6]
@@ -2078,7 +2078,7 @@ margin_bottom = 496.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
 
-[node name="DuelButtonSelection" parent="HBox" instance=ExtResource( 2 )]
+[node name="ButtonSelection" parent="HBox" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 500.0

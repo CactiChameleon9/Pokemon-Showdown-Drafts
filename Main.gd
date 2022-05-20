@@ -5,7 +5,7 @@ export(String, MULTILINE) var pokemon_text : String
 
 
 onready var pokemon_cont : Control = $HBox/PokemonContainer
-onready var duel_button_selection : Control = $HBox/DuelButtonSelection
+onready var button_selection : Control = $HBox/ButtonSelection
 
 
 signal has_poped_values_true
@@ -76,7 +76,7 @@ func finished_ui():
 
 
 func select_pkmn():
-	duel_button_selection.number_of_buttons = 2 
+	button_selection.number_of_buttons = 2 
 	selected_pkmn = [] #reset the selected pkmn
 	
 	while len(selected_pkmn) < 6:
@@ -107,9 +107,9 @@ func select_pkmn():
 		draft1.load_pictures()
 		draft2.load_pictures()
 		
-		duel_button_selection.button1_text = "Choose " + draft1.a_name
-		duel_button_selection.button2_text = "Choose " + draft2.a_name
-		var choice = yield(duel_button_selection, "pressed")
+		button_selection.button1_text = "Choose " + draft1.a_name
+		button_selection.button2_text = "Choose " + draft2.a_name
+		var choice = yield(button_selection, "pressed")
 		
 		yield(get_tree().create_timer(0.1), "timeout")
 		rset("has_chosen_pkmn", true)
@@ -196,12 +196,12 @@ func networking_stuff(is_client : bool, server_address = ""):
 
 
 func user_networking_choice():
-	duel_button_selection.number_of_buttons = 3
+	button_selection.number_of_buttons = 3
 	
-	duel_button_selection.button1_text = "Client"
-	duel_button_selection.button2_text = "Offline"
-	duel_button_selection.button3_text = "Server"
-	var choice = yield(duel_button_selection, "pressed")
+	button_selection.button1_text = "Client"
+	button_selection.button2_text = "Offline"
+	button_selection.button3_text = "Server"
+	var choice = yield(button_selection, "pressed")
 	
 	if choice == 2: #offline
 		is_offline = true
@@ -211,7 +211,7 @@ func user_networking_choice():
 	
 	var server_address
 	if is_client: #an ip address needs to be entered
-		duel_button_selection.button2_text = "" #hide other button
+		button_selection.button2_text = "" #hide other button
 		
 		$AddressDialog.visible = true #make the dialog visible
 		
@@ -229,6 +229,6 @@ func user_networking_choice():
 				if "192" in address or "10" in address:
 					ip_address=address
 		
-		duel_button_selection.button1_text = ip_address
+		button_selection.button1_text = ip_address
 	
 	yield(networking_stuff(is_client, server_address), "completed")
