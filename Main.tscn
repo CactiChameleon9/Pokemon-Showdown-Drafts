@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://ui/DuelButtonSelection.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/Theme.tres" type="Theme" id=3]
 [ext_resource path="res://ui/SelectedSidebar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/FinalScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/AddressDialog.tscn" type="PackedScene" id=6]
@@ -2072,7 +2071,6 @@ margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 3 )
 
 [node name="PokemonContainer" type="HBoxContainer" parent="HBox"]
 margin_right = 941.0

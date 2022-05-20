@@ -17,6 +17,7 @@ script = ExtResource( 3 )
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 2 )
 
 [node name="Background" type="ColorRect" parent="AddressDialog"]
 anchor_right = 1.0
@@ -26,7 +27,6 @@ color = Color( 0, 0, 0, 0.313726 )
 [node name="HBoxContainer" type="HBoxContainer" parent="AddressDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 2 )
 
 [node name="Control2" type="Control" parent="AddressDialog/HBoxContainer"]
 margin_right = 225.0

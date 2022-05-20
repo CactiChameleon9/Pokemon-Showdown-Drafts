@@ -21,6 +21,7 @@ anchor_bottom = 1.0
 margin_right = -960.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Margin" type="PanelContainer" parent="."]
@@ -30,7 +31,6 @@ margin_bottom = 600.0
 rect_min_size = Vector2( 57, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 1 )
 custom_styles/panel = SubResource( 3 )
 
 [node name="VBox" type="VBoxContainer" parent="Margin"]
