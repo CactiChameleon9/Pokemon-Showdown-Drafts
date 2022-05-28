@@ -39,7 +39,7 @@ func _emit_pressed(button_number):
 	elif button_number == 4:
 		emit_signal("forth_pressed")
 	elif button_number == 5:
-		emit_signal("ffith_pressed")
+		emit_signal("fifth_pressed")
 
 
 func _set_num_of_buttons(new_value):

@@ -4,7 +4,7 @@ extends Control
 export(String, MULTILINE) var pokemon_text : String
 
 
-onready var pokemon_cont : Control = $HBox/PokemonContainer
+onready var pokemon_container : Control = $HBox/PokemonContainer
 onready var button_selection : Control = $HBox/ButtonSelection
 
 
@@ -23,12 +23,18 @@ var is_offline : bool = false
 func _ready() -> void:
 	randomize()
 	
-	#split up the data into each pokemon
-	pkmn_data = process_pokemon_text(pokemon_text)
-	
 	yield(user_networking_choice(), "completed")
 	
+	$SettingsMenu.visible_button = false
+	#select some custom text if valid
+	var settings_pokemon_text = $SettingsMenu.get_pokemon_text()
+	if "-" in settings_pokemon_text: #if a move is detected
+		pokemon_text = settings_pokemon_text
+	
 	while true:
+		#split up the data into each pokemon
+		pkmn_data = process_pokemon_text(pokemon_text)
+		
 		yield(select_pkmn(), "completed")
 		
 		yield(finished_ui(), "completed")
@@ -73,6 +79,8 @@ func finished_ui():
 	
 	#reset the sidebar
 	$SelectedSidebar.reset()
+	
+	has_reset = false
 
 
 func select_pkmn():
@@ -96,13 +104,13 @@ func select_pkmn():
 		rset("has_poped_values", true) # allow the client to select its pokemon
 		
 		#remove existing pokemon info UI
-		if len(pokemon_cont.get_children()) != 0:
-			pokemon_cont.remove_child(pokemon_cont.get_children()[0])
-			pokemon_cont.remove_child(pokemon_cont.get_children()[0])
+		if len(pokemon_container.get_children()) != 0:
+			pokemon_container.remove_child(pokemon_container.get_children()[0])
+			pokemon_container.remove_child(pokemon_container.get_children()[0])
 		
 		#add new pokemon info UI
-		pokemon_cont.add_child(draft1)
-		pokemon_cont.add_child(draft2)
+		pokemon_container.add_child(draft1)
+		pokemon_container.add_child(draft2)
 		
 		draft1.load_pictures()
 		draft2.load_pictures()

@@ -1,9 +1,11 @@
-[gd_resource type="Theme" load_steps=18 format=2]
+[gd_resource type="Theme" load_steps=21 format=2]
 
 [ext_resource path="res://assets/Kenney Future Narrow.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/BackgroundScroll.png" type="Texture" id=2]
 [ext_resource path="res://assets/HoverScroll.png" type="Texture" id=3]
 [ext_resource path="res://assets/ClickedScroll.png" type="Texture" id=4]
+[ext_resource path="res://assets/CheckedBox.png" type="Texture" id=5]
+[ext_resource path="res://assets/UncheckedBox.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
@@ -99,9 +101,24 @@ shadow_color = Color( 0, 0, 0, 0.0823529 )
 shadow_size = 3
 shadow_offset = Vector2( 0, 2.744 )
 
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.12549, 0.12549, 0.12549, 1 )
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color( 0.12549, 0.12549, 0.12549, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color( 0, 0, 0, 0.0823529 )
+shadow_size = 3
+shadow_offset = Vector2( 0, 2.744 )
+
 [sub_resource type="StyleBoxTexture" id=14]
 texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 10, 77 )
+region_rect = Rect2( 0, 0, 15, 77 )
 margin_top = 4.0
 margin_bottom = 4.0
 expand_margin_top = 4.0
@@ -109,7 +126,7 @@ expand_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxTexture" id=15]
 texture = ExtResource( 4 )
-region_rect = Rect2( 0, 0, 10, 77 )
+region_rect = Rect2( 0, 0, 15, 77 )
 margin_top = 4.0
 margin_bottom = 4.0
 expand_margin_top = 4.0
@@ -117,7 +134,7 @@ expand_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxTexture" id=16]
 texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 10, 77 )
+region_rect = Rect2( 0, 0, 15, 77 )
 margin_top = 4.0
 margin_bottom = 4.0
 
@@ -133,6 +150,8 @@ Button/styles/focus = SubResource( 8 )
 Button/styles/hover = SubResource( 6 )
 Button/styles/normal = SubResource( 4 )
 Button/styles/pressed = SubResource( 7 )
+CheckBox/icons/checked = ExtResource( 5 )
+CheckBox/icons/unchecked = ExtResource( 6 )
 HSeparator/constants/separation = 15
 HSeparator/styles/separator = SubResource( 10 )
 LineEdit/styles/focus = SubResource( 13 )
@@ -140,6 +159,7 @@ LineEdit/styles/normal = SubResource( 11 )
 LineEdit/styles/read_only = SubResource( 12 )
 Panel/styles/panel = null
 PanelContainer/styles/panel = SubResource( 9 )
+TextEdit/styles/normal = SubResource( 17 )
 VScrollBar/styles/grabber = SubResource( 14 )
 VScrollBar/styles/grabber_highlight = SubResource( 14 )
 VScrollBar/styles/grabber_pressed = SubResource( 15 )
