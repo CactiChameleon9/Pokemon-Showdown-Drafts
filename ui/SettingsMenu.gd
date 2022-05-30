@@ -4,20 +4,14 @@ extends CanvasLayer
 var visible : bool = false
 var visible_button : bool = true
 
-var selected_text : int = 1
+var selected_pools = []
 
-var pokemon_text_location := "SettingsMenu/PanelContainer/HContainer/ScrollContainer/VContainer/PanelContainer/VContainer/TextEdit%s"
-var checkbox_location := "SettingsMenu/PanelContainer/HContainer/ScrollContainer/VContainer/PanelContainer/VContainer/HBoxContainer%s/CheckBox"
+var pool_preview_location := "SettingsMenu/PanelContainer/HContainer/ScrollContainer/VContainer/PanelContainer/VContainer/HBoxContainer%s/CheckBox"
+onready var auto_grid_container := $SettingsMenu/PanelContainer/HContainer/VContainer/AutoGridContainer
 
 
 func _ready() -> void:
-	#check the currently selected text
-	get_node(checkbox_location % selected_text).pressed = true
-	
 	_load_data()
-	
-#	#run the process once on ready to prevent errors with null/empty values
-#	_process(0)
 
 
 func _process(_delta):
@@ -27,23 +21,32 @@ func _process(_delta):
 
 
 func get_pokemon_text() -> String:
-	return get_node(pokemon_text_location % selected_text).text
+	var total_pokemon_text : String = ""
+	
+	for pool in selected_pools:
+		if auto_grid_container.get_node_from_grid(pool):
+			total_pokemon_text += auto_grid_container.get_node_from_grid(pool).pokemon_text + "\n"
+	
+	
+	return total_pokemon_text
 
-
-func _save_data(hide_too : bool = false):
+func _save_data(hide_after : bool = false):
 	var config = ConfigFile.new()
 	
 	#store some values
-	config.set_value("pokemonpool", "slot1", get_node(pokemon_text_location % 1).text)
-	config.set_value("pokemonpool", "slot2", get_node(pokemon_text_location % 2).text)
-	config.set_value("pokemonpool", "slot3", get_node(pokemon_text_location % 3).text)
-	
-	config.set_value("pokemonpool", "selected", selected_text)
+	for pool in auto_grid_container.grid_container.get_children():
+		#disclude any non-pool nodes
+		if not "PoolPreview" in pool.name:
+			continue
+		
+		#store the pools and if they are selected in seperate sections
+		config.set_value("pokemonpools", pool.name, pool.pokemon_text)
+		config.set_value("selectedpools", pool.name, pool.pressed)
 	
 	#save it to a file (overwrite if already exists)
 	config.save("user://settings.cfg")
 	
-	if hide_too:
+	if hide_after:
 		visible = false
 
 
@@ -53,40 +56,70 @@ func _load_data():
 	if config.load("user://settings.cfg") != OK:
 		return
 	
-	for num in range(1, 4):
-		get_node(pokemon_text_location % num).text = config.get_value(
-			"pokemonpool", "slot%s" % num, "")
+	#add all of the pools to the grid container
+	for pool_name in config.get_section_keys("pokemonpools"):
+		_add_pokemon_pool(pool_name, config.get_value("pokemonpools", pool_name, ""))
 	
-	selected_text = config.get_value("pokemonpool", "selected", 1)
-	get_node(checkbox_location % selected_text).pressed = true
-
-
-func _input(event):
-	if visible && event is InputEventKey:
-		if event.pressed and event.scancode == KEY_ENTER:
-			
-			#hide the setttings
-			visible = false
-			
-			_save_data()
-
-
-func _on_CheckBox_toggled(button_pressed : bool, number_toggled : int) -> void:	
-	#don't do anything for unpressing buttons
-	if button_pressed == false:
-		return
+	#fill the selected_pools array 
+	for pool_name in config.get_section_keys("selectedpools"):
+		if config.get_value("selectedpools", pool_name):
+			selected_pools.append(pool_name)
 	
-	#uncheck all of the other checkboxes
-	for i in range(1, 4):
-		#skip disabling current button
-		if i == number_toggled:
-			continue
-		
-		get_node(checkbox_location % i).pressed = false
+	#move the children to the grid, because this runs before _process
+	auto_grid_container._move_children_to_grid()
 	
-	selected_text = number_toggled
+	#press(select) all of the selected pools
+	for pool in selected_pools:
+		if auto_grid_container.get_node_from_grid(pool):
+			auto_grid_container.get_node_from_grid(pool).pressed = true
 
 
-func _on_SettingsButton_pressed() -> void:
+func _on_SettingsButton_pressed():
 	#show settings
 	visible = true
+
+
+func _add_pokemon_pool(pool_name : String = "", text : String = ""):
+	var pool_preview = preload("res://ui/PoolPreview.tscn")
+	
+	if pool_name == "":
+		pool_name = "PoolPreview%s" % rand_range(0, 9999999)
+	
+	var pool = pool_preview.instance()
+	
+	pool.connect("edit_pool", self, "_edit_pool")
+	
+	auto_grid_container.add_child(pool)
+	
+	pool.name = pool_name
+	pool.pokemon_text = text
+	
+	auto_grid_container._move_children_to_grid()
+	
+	if auto_grid_container.grid_container.has_node("PlusButton"):
+		auto_grid_container.grid_container.move_child(
+			auto_grid_container.grid_container.get_node("PlusButton"),
+			auto_grid_container.grid_container.get_node("PlusButton").get_index() + 1)
+
+
+func _edit_pool(pool_name):
+	if pool_name == "" or pool_name == null:
+		return
+	
+	if auto_grid_container.get_node_from_grid(pool_name):
+		#this gets the pool node, and then moves it to the scroll container (to fullscreen)
+		var pool = auto_grid_container.grid_container.get_node(pool_name)
+		auto_grid_container.grid_container.remove_child(pool)
+		auto_grid_container.get_node("Scroll").add_child(pool)
+		pool.editable = true
+		
+	elif auto_grid_container.get_node("Scroll").has_node(pool_name):
+		#this gets the pool node, and then moves it to the scroll container (to fullscreen)
+		var pool = auto_grid_container.get_node("Scroll").get_node(pool_name)
+		auto_grid_container.get_node("Scroll").remove_child(pool)
+		auto_grid_container.grid_container.add_child(pool)
+		auto_grid_container.grid_container.move_child(pool, 0)
+		#for some reason this is needed to prevent the button being stuck in hover mode
+		yield(get_tree().create_timer(0.01), "timeout")
+		pool.editable = false
+	

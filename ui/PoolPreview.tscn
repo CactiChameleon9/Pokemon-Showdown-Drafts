@@ -1,0 +1,103 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/PoolPreview.gd" type="Script" id=2]
+[ext_resource path="res://assets/DeleteIcon.svg" type="Texture" id=3]
+[ext_resource path="res://assets/EditIcon.svg" type="Texture" id=4]
+
+[node name="PoolPreview" type="Button"]
+margin_right = 170.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 170, 170 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+toggle_mode = true
+script = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+mouse_filter = 2
+
+[node name="VContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 150.0
+margin_bottom = 150.0
+
+[node name="3Spacer2" type="Control" parent="MarginContainer/VContainer"]
+margin_right = 150.0
+margin_bottom = 3.0
+rect_min_size = Vector2( 0, 3 )
+mouse_filter = 2
+
+[node name="Label1" type="Label" parent="MarginContainer/VContainer"]
+margin_top = 7.0
+margin_right = 150.0
+margin_bottom = 34.0
+text = "Slot %s"
+clip_text = true
+max_lines_visible = 1
+
+[node name="3Spacer1" type="Control" parent="MarginContainer/VContainer"]
+margin_top = 38.0
+margin_right = 150.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 0, 3 )
+mouse_filter = 2
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/VContainer"]
+margin_top = 45.0
+margin_right = 150.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 103 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_vertical = 3
+show_line_numbers = true
+
+[node name="DeleteButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -41.0
+margin_top = -63.0
+margin_right = -16.0
+margin_bottom = -16.0
+mouse_filter = 1
+action_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="DeleteButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="EditButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -71.0
+margin_top = -63.0
+margin_right = -46.0
+margin_bottom = -16.0
+mouse_filter = 1
+size_flags_horizontal = 9
+size_flags_vertical = 9
+action_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="EditButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[connection signal="pressed" from="DeleteButton" to="." method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="EditButton" to="." method="_on_EditButton_pressed"]
