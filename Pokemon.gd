@@ -4,6 +4,7 @@ extends Control
 var a_name = ""
 var item = ""
 var ability = ""
+var level = ""
 var nature = ""
 var ev_hp = 00; var ev_atk = 00; var ev_spa = 00; var ev_spd = 00; var ev_def = 00; var ev_spe = 00 #up to 252
 var iv_hp = 31; var iv_atk = 31; var iv_spa = 31; var iv_spd = 31; var iv_def = 31; var iv_spe = 31 #up to 31, default 31
@@ -94,6 +95,7 @@ func import_text(text):
 	var a_name_pos = array_pos(text_array, "@") if array_pos(text_array, "@") else 0 #not always item
 	var item_pos = array_pos(text_array, "@")
 	var ability_pos = array_pos(text_array, "Ability: ")
+	var level_pos = array_pos(text_array, "Level: ")
 	var nature_pos = array_pos(text_array, " Nature")
 	var ev_pos = array_pos(text_array, "EVs: ")
 	var iv_pos = array_pos(text_array, "IVs: ")
@@ -104,6 +106,7 @@ func import_text(text):
 	a_name = a_name.trim_suffix(" ").trim_suffix(" ").trim_suffix(" ").trim_suffix(" ")
 	item = item       if item_pos == null else text_array[item_pos].split(" @ ")[1]
 	ability = ability if not ability_pos else text_array[ability_pos].replace("Ability: ", "")	#Ability: Gluttony
+	level = level if not level_pos else text_array[level_pos].replace("Level: ", "")			#Level: 100
 	nature = nature   if not nature_pos else text_array[nature_pos].replace(" Nature", "")		#Quiet Nature
 	nature = nature.replace(" ", "")
 	
@@ -138,6 +141,7 @@ func export_text():
 	else:
 		text += "\n" + a_name
 	text += "\n" + "Ability: " + ability
+	text += "\n" + "Level: " + level
 	text += "\n" + nature + " Nature"
 	text += "\n" + "EVs: " + str(ev_hp) + " HP / " + str(ev_atk) + " Atk / " + str(ev_def) + " Def / " + str(ev_spa) + " SpA / " +  str(ev_spd) + " SpD / " + str(ev_spe) + " Spe"
 	text += "\n" + "IVs: " + str(iv_hp) + " HP / " + str(iv_atk) + " Atk / " + str(iv_def) + " Def / " + str(iv_spa) + " SpA / " +  str(iv_spd) + " SpD / " + str(iv_spe) + " Spe"
