@@ -169,6 +169,11 @@ func process_pokemon_text(text):
 	
 	#make a new array with the pokemon class
 	for i in range (0, len(text_array)):
+		#skip if the text is empty
+		var empty_test : String = text_array[i]
+		if empty_test.replace("\n", "").replace(" ", "").replace("	", "") == "":
+			continue
+		
 		var tmp = preload("res://Pokemon.tscn").instance()
 		tmp.import_text(text_array[i])
 		array.append(tmp)
