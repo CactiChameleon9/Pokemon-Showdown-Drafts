@@ -150,7 +150,8 @@ func select_pkmn():
 		has_chosen_pkmn = false
 		has_set_them_choosen = false
 		
-		yield(get_tree().create_timer(0.5), "timeout")
+		if not is_offline:
+			yield(get_tree().create_timer(0.5), "timeout")
 
 
 func pkmn_array_to_text(pkmn_array):
