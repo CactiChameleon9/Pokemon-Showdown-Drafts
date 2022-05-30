@@ -1,7 +1,7 @@
 extends Control
 
 
-export(String, MULTILINE) var pokemon_text : String
+export(String, MULTILINE) remote var pokemon_text : String
 
 
 onready var pokemon_container : Control = $HBox/PokemonContainer
@@ -11,10 +11,12 @@ onready var button_selection : Control = $HBox/ButtonSelection
 signal has_poped_values_true
 signal has_chosen_pkmn_true
 signal has_reset_true
+signal has_set_them_choosen_true
 
 remote var has_poped_values : bool = false
 remote var has_chosen_pkmn : bool = false
 remote var has_reset : bool = false
+remote var has_set_them_choosen : bool = false
 var pkmn_data = []
 var selected_pkmn = []
 
@@ -30,7 +32,12 @@ func _ready() -> void:
 	var settings_pokemon_text = $SettingsMenu.get_pokemon_text()
 	if "-" in settings_pokemon_text: #if a move is detected
 		pokemon_text = settings_pokemon_text
-	
+		
+		#Temporary solution to force the server's settings onto the clients
+		if not is_offline and get_tree().is_network_server():
+			rset("pokemon_text", pokemon_text)
+			yield(get_tree().create_timer(0.5), "timeout")
+		
 	while true:
 		#split up the data into each pokemon
 		pkmn_data = process_pokemon_text(pokemon_text)
@@ -45,6 +52,7 @@ func _process(_delta: float) -> void:
 	if is_offline: # disable all networking waits if offline
 		has_poped_values = true
 		has_chosen_pkmn = true
+		has_set_them_choosen = true
 		has_reset = true
 	
 	if has_poped_values or get_tree().is_network_server():
@@ -53,8 +61,12 @@ func _process(_delta: float) -> void:
 	if has_chosen_pkmn:
 		emit_signal("has_chosen_pkmn_true")
 	
+	if has_set_them_choosen:
+		emit_signal("has_set_them_choosen_true")
+	
 	if has_reset:
 		emit_signal("has_reset_true")
+	
 
 
 func finished_ui():
@@ -100,7 +112,6 @@ func select_pkmn():
 		var draft2 : Pokemon = pkmn_data.pop_at(draft_number)
 		rpc("pop_pkmn_data", draft_number)
 		
-		yield(get_tree().create_timer(0.1), "timeout")
 		rset("has_poped_values", true) # allow the client to select its pokemon
 		
 		#remove existing pokemon info UI
@@ -119,9 +130,7 @@ func select_pkmn():
 		button_selection.button2_text = "Choose " + draft2.a_name
 		var choice = yield(button_selection, "pressed")
 		
-		yield(get_tree().create_timer(0.1), "timeout")
 		rset("has_chosen_pkmn", true)
-		
 		yield(self, "has_chosen_pkmn_true") #wait until other has chosen
 		
 		if choice == 1:
@@ -133,10 +142,15 @@ func select_pkmn():
 			$SelectedSidebar.set_pokemon(draft2.a_name, draft1.a_name)
 			rpc("set_them_chosen", draft2.export_text(), draft1.export_text())
 		
-		yield(get_tree().create_timer(0.1), "timeout")
+		rset("has_set_them_choosen", true)
+		yield(self, "has_set_them_choosen_true")
+		
 		#reset the waiting
 		has_poped_values = false
 		has_chosen_pkmn = false
+		has_set_them_choosen = false
+		
+		yield(get_tree().create_timer(0.5), "timeout")
 
 
 func pkmn_array_to_text(pkmn_array):
