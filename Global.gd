@@ -701,7 +701,7 @@ const PokemonDict = {
 	"vivillon": 666,
 	"litleo": 667,
 	"pyroar": 668,
-	"flabebe": 669,
+	"flabébé": 669,
 	"floette": 670,
 	"florges": 671,
 	"skiddo": 672,
