@@ -4,8 +4,6 @@ extends CanvasLayer
 var visible : bool = false
 var visible_button : bool = true
 
-var selected_pools = []
-
 var pool_preview_location := "SettingsMenu/PanelContainer/HContainer/ScrollContainer/VContainer/PanelContainer/VContainer/HBoxContainer%s/CheckBox"
 onready var auto_grid_container := $SettingsMenu/PanelContainer/HContainer/VContainer/AutoGridContainer
 
@@ -23,10 +21,18 @@ func _process(_delta):
 func get_pokemon_text() -> String:
 	var total_pokemon_text : String = ""
 	
-	for pool in selected_pools:
-		if auto_grid_container.get_node_from_grid(pool):
-			total_pokemon_text += auto_grid_container.get_node_from_grid(pool).pokemon_text + "\n"
-	
+	#iterate through all of the pools and use the selected ones for the pokemon text
+	for pool in auto_grid_container.grid_container.get_children():
+		#disclude any non-pool
+		if not "PoolPreview" in pool.name:
+			continue
+		
+		#disclude any not selected
+		if not pool.pressed:
+			continue
+		
+		if auto_grid_container.get_node_from_grid(pool.name):
+			total_pokemon_text += auto_grid_container.get_node_from_grid(pool.name).pokemon_text + "\n"
 	
 	return total_pokemon_text
 
@@ -60,6 +66,7 @@ func _load_data():
 	for pool_name in config.get_section_keys("pokemonpools"):
 		_add_pokemon_pool(pool_name, config.get_value("pokemonpools", pool_name, ""))
 	
+	var selected_pools = []
 	#fill the selected_pools array 
 	for pool_name in config.get_section_keys("selectedpools"):
 		if config.get_value("selectedpools", pool_name):
