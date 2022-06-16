@@ -33,12 +33,14 @@ func _ready() -> void:
 	pokemon_text = $SettingsMenu.get_pokemon_text()
 	
 	#yield until variable change, or carry on if server
-	if not is_offline and get_tree().is_network_server():
-		rset("pokemon_text", pokemon_text)
-		rset("has_sent_pokemon_text", true)
-		has_sent_pokemon_text = true
+	if not is_offline:
+		if get_tree().is_network_server():
+			rset("pokemon_text", pokemon_text)
+			rset("has_sent_pokemon_text", true)
+			has_sent_pokemon_text = true
+		
+		yield(self, "has_sent_pokemon_text_true")
 	
-	yield(self, "has_sent_pokemon_text_true")
 	
 	while true:
 		#split up the data into each pokemon
