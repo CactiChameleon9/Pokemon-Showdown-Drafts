@@ -1,6 +1,6 @@
 extends Control
 
-export var image_location = "res://assets/PokemonMini/%s.png"
+export var image_location = "res://assets/sprites/sprites/pokemon/%s.png"
 
 onready var them_image = $AspectRatioContainer/Circle/ThemImage
 onready var your_image = $AspectRatioContainer/Circle/YourImage

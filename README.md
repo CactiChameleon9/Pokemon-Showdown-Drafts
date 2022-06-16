@@ -15,9 +15,14 @@ A Gnome styled godot app in which to players (on the same network) can select a 
 
 
 ## Building
-The images are not downloaded into the repo (for obvious reasons). Pictures should be downloaded into `assets/Pokemon` and `assets/PokemonMini` (simple instructions in each folder)
-The naming scheme for said files is also in `Global.gd`
+Clone PokeApi's sprites repo into the assets folder:
+```
+cd assets
+git clone https://github.com/PokeAPI/sprites.git
+```
+Then build/run the godot project as normal
 
+Note: importing the assets can take a while, not too sure what to do about that.
 
 ## Contributing
 This is more of a personal project, but I guess if you have any code suggestions... feel free to make a PR and I will think about this more :laugh:
@@ -26,3 +31,4 @@ This is more of a personal project, but I guess if you have any code suggestions
 ## Credits
 - Godot for their amazing engine
 - Pokemon Showdown for their fun platform
+- PokeApi for their sprites

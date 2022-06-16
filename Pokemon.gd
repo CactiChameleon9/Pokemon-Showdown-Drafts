@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func load_pictures():
 	var pokemon_image = $HBContainer/PokemonImage
-	var picture_location = "res://assets/Pokemon/%s.png"
+	var picture_location = "res://assets/sprites/sprites/pokemon/other/official-artwork/%s.png"
 	
 	var texture = load(picture_location % Global.PokemonDict[a_name.to_lower()])
 
