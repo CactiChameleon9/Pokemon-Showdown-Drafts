@@ -7,12 +7,13 @@ export(String, MULTILINE) remote var pokemon_text : String
 onready var pokemon_container : Control = $HBox/PokemonContainer
 onready var button_selection : Control = $HBox/ButtonSelection
 
-
+signal has_sent_pokemon_text_true
 signal has_poped_values_true
 signal has_chosen_pkmn_true
 signal has_reset_true
 signal has_set_them_choosen_true
 
+remote var has_sent_pokemon_text : bool = false
 remote var has_poped_values : bool = false
 remote var has_chosen_pkmn : bool = false
 remote var has_reset : bool = false
@@ -29,15 +30,16 @@ func _ready() -> void:
 	
 	$SettingsMenu.visible_button = false
 	#select some custom text if valid
-	var settings_pokemon_text = $SettingsMenu.get_pokemon_text()
-	if "-" in settings_pokemon_text: #if a move is detected
-		pokemon_text = settings_pokemon_text
-		
-		#Temporary solution to force the server's settings onto the clients
-		if not is_offline and get_tree().is_network_server():
-			rset("pokemon_text", pokemon_text)
-			yield(get_tree().create_timer(0.5), "timeout")
-		
+	pokemon_text = $SettingsMenu.get_pokemon_text()
+	
+	#yield until variable change, or carry on if server
+	if not is_offline and get_tree().is_network_server():
+		rset("pokemon_text", pokemon_text)
+		rset("has_sent_pokemon_text", true)
+		has_sent_pokemon_text = true
+	
+	yield(self, "has_sent_pokemon_text_true")
+	
 	while true:
 		#split up the data into each pokemon
 		pkmn_data = process_pokemon_text(pokemon_text)
@@ -54,6 +56,9 @@ func _process(_delta: float) -> void:
 		has_chosen_pkmn = true
 		has_set_them_choosen = true
 		has_reset = true
+	
+	if has_sent_pokemon_text:
+		emit_signal("has_sent_pokemon_text_true")
 	
 	if has_poped_values or get_tree().is_network_server():
 		emit_signal("has_poped_values_true")
