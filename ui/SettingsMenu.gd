@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-var visible : bool = false
+var self_visible : bool = false
 var visible_button : bool = true
 
 var pool_preview_location := "SettingsMenu/PanelContainer/HContainer/ScrollContainer/VContainer/PanelContainer/VContainer/HBoxContainer%s/CheckBox"
@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _process(_delta):
 	#show and hide the nodes based of visible bools
-	$SettingsMenu/PanelContainer.visible = visible
+	$SettingsMenu/PanelContainer.visible = self_visible
 	$SettingsMenu/SettingsButton.visible = visible_button
 
 
@@ -42,7 +42,7 @@ func _save_data(hide_after : bool = false):
 	#store some values
 	for pool in auto_grid_container.grid_container.get_children():
 		#disclude any non-pool nodes
-		if not "PoolPreview" in pool.name:
+		if not "Pool" in pool.name:
 			continue
 		
 		#store the pools and if they are selected in seperate sections
@@ -53,13 +53,17 @@ func _save_data(hide_after : bool = false):
 	config.save("user://settings.cfg")
 	
 	if hide_after:
-		visible = false
+		self_visible = false
 
 
 func _load_data():
 	var config = ConfigFile.new()
 	
 	if config.load("user://settings.cfg") != OK:
+		return
+	
+	#return if there are no pools stored
+	if not config.has_section("pokemonpools"):
 		return
 	
 	#add all of the pools to the grid container
@@ -83,14 +87,14 @@ func _load_data():
 
 func _on_SettingsButton_pressed():
 	#show settings
-	visible = true
+	self_visible = true
 
 
 func _add_pokemon_pool(pool_name : String = "", text : String = ""):
 	var pool_preview = preload("res://ui/PoolPreview.tscn")
 	
 	if pool_name == "":
-		pool_name = "PoolPreview%s" % rand_range(0, 9999999)
+		pool_name = "Pool %05d" % int(rand_range(0, 99999))
 	
 	var pool = pool_preview.instance()
 	
@@ -98,7 +102,7 @@ func _add_pokemon_pool(pool_name : String = "", text : String = ""):
 	
 	auto_grid_container.add_child(pool)
 	
-	pool.name = pool_name
+	pool.pool_name = pool_name
 	pool.pokemon_text = text
 	
 	auto_grid_container._move_children_to_grid()

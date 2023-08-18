@@ -8,7 +8,7 @@ signal enter_pressed
 
 
 export var text : String = ""
-export var visible : bool = false
+export var self_visible : bool = false
 
 
 func _process(_delta: float) -> void:
@@ -19,9 +19,9 @@ func _process(_delta: float) -> void:
 		line_hint.visible = true
 	
 	text = line_edit.text
-	$AddressDialog.visible = visible
+	$AddressDialog.visible = self_visible
 
 func _input(event):
-	if visible && event is InputEventKey:
+	if self_visible && event is InputEventKey:
 		if event.pressed and event.scancode == KEY_ENTER:
 			emit_signal("enter_pressed")

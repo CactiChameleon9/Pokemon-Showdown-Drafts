@@ -3,6 +3,7 @@ extends Button
 signal delete_pool(pool_name)
 signal edit_pool(pool_name)
 
+var pool_name : String = "" setget _set_pool_name
 var pokemon_text : String = "" setget _set_pokemon_text, _get_pokemon_text
 var editable : bool = false setget _set_editable, _get_editable
 
@@ -11,9 +12,10 @@ onready var _text_edit = $MarginContainer/VContainer/TextEdit
 onready var _label = $MarginContainer/VContainer/Label1
 
 
-func _ready() -> void:
-	_label = name
-
+func _set_pool_name(value: String):
+	_label.text = value
+	pool_name = value
+	name = pool_name
 
 func _set_pokemon_text(value : String):
 	_text_edit.text = value
