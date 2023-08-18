@@ -30,6 +30,10 @@ margin_bottom = 108.0
 self_modulate = Color( 0.882353, 0.882353, 0.882353, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
 mouse_filter = 2
 texture = ExtResource( 3 )
 expand = true
@@ -73,7 +77,7 @@ size_flags_stretch_ratio = 0.07
 margin_top = 33.0
 margin_right = 891.0
 margin_bottom = 60.0
-text = "Settings"
+text = "Pokemon Pools  (for Host)"
 
 [node name="Control" type="Control" parent="SettingsMenu/PanelContainer/HContainer/VContainer"]
 margin_top = 64.0
@@ -81,6 +85,7 @@ margin_right = 891.0
 margin_bottom = 64.0
 
 [node name="AutoGridContainer" parent="SettingsMenu/PanelContainer/HContainer/VContainer" instance=ExtResource( 5 )]
+unique_name_in_owner = true
 margin_top = 68.0
 margin_right = 891.0
 margin_bottom = 482.0
@@ -111,7 +116,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.07
 
-[node name="Button" type="Button" parent="SettingsMenu/PanelContainer/HContainer/VContainer"]
+[node name="ConfirmButton" type="Button" parent="SettingsMenu/PanelContainer/HContainer/VContainer"]
+unique_name_in_owner = true
 margin_top = 519.0
 margin_right = 891.0
 margin_bottom = 566.0
@@ -136,4 +142,4 @@ size_flags_stretch_ratio = 0.07
 
 [connection signal="pressed" from="SettingsMenu/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="SettingsMenu/PanelContainer/HContainer/VContainer/AutoGridContainer/PlusButton" to="." method="_add_pokemon_pool"]
-[connection signal="pressed" from="SettingsMenu/PanelContainer/HContainer/VContainer/Button" to="." method="_save_data" binds= [ true ]]
+[connection signal="pressed" from="SettingsMenu/PanelContainer/HContainer/VContainer/ConfirmButton" to="." method="_save_data" binds= [ true ]]

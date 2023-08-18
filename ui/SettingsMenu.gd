@@ -5,7 +5,8 @@ var self_visible : bool = false
 var visible_button : bool = true
 
 var pool_preview_location := "SettingsMenu/PanelContainer/HContainer/ScrollContainer/VContainer/PanelContainer/VContainer/HBoxContainer%s/CheckBox"
-onready var auto_grid_container := $SettingsMenu/PanelContainer/HContainer/VContainer/AutoGridContainer
+onready var auto_grid_container := $"%AutoGridContainer"
+onready var confirm_button := $"%ConfirmButton"
 
 
 func _ready() -> void:
@@ -123,6 +124,7 @@ func _edit_pool(pool_name):
 		auto_grid_container.grid_container.remove_child(pool)
 		auto_grid_container.get_node("Scroll").add_child(pool)
 		pool.editable = true
+		confirm_button.visible = false
 		
 	elif auto_grid_container.get_node("Scroll").has_node(pool_name):
 		#this gets the pool node, and then moves it to the scroll container (to fullscreen)
@@ -133,4 +135,5 @@ func _edit_pool(pool_name):
 		#for some reason this is needed to prevent the button being stuck in hover mode
 		yield(get_tree().create_timer(0.01), "timeout")
 		pool.editable = false
+		confirm_button.visible = true
 	
