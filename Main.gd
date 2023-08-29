@@ -21,7 +21,7 @@ remote var has_set_them_choosen : bool = false
 var pkmn_data = []
 var selected_pkmn = []
 
-var is_offline : bool = false
+var is_online : bool = true
 
 func _ready() -> void:
 	randomize()
@@ -33,7 +33,7 @@ func _ready() -> void:
 	pokemon_text = $SettingsMenu.get_pokemon_text()
 	
 	#yield until variable change, or carry on if server
-	if not is_offline:
+	if is_online:
 		if get_tree().is_network_server():
 			rset("pokemon_text", pokemon_text)
 			rset("has_sent_pokemon_text", true)
@@ -53,16 +53,10 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	
-	if is_offline: # disable all networking waits if offline
-		has_poped_values = true
-		has_chosen_pkmn = true
-		has_set_them_choosen = true
-		has_reset = true
-	
 	if has_sent_pokemon_text:
 		emit_signal("has_sent_pokemon_text_true")
 	
-	if has_poped_values or get_tree().is_network_server():
+	if has_poped_values:
 		emit_signal("has_poped_values_true")
 	
 	if has_chosen_pkmn:
@@ -87,9 +81,11 @@ func finished_ui():
 	$FinalScreen.visible = true
 	
 	yield($FinalScreen, "reset") #reset button pressed
-	rset("has_reset", true)
 	
-	yield(self, "has_reset_true") #wait until both have reset
+	if is_online:
+		rset("has_reset", true)
+		yield(self, "has_reset_true") #wait until both have reset
+	
 	#hide the final text
 	$FinalScreen.visible = false
 	
@@ -109,17 +105,19 @@ func select_pkmn():
 	while len(selected_pkmn) < 6:
 		
 		#yield until variable change, or carry on if server
-		yield(self, "has_poped_values_true")
+		if is_online and not get_tree().is_network_server():
+			yield(self, "has_poped_values_true")
 		
 		var draft_number = randi() % len(pkmn_data) # select random pkmn (and remove it from list)
 		var draft1 : Pokemon = pkmn_data.pop_at(draft_number)
-		rpc("pop_pkmn_data", draft_number) # remove pkmn from remote list
+		if is_online: rpc("pop_pkmn_data", draft_number) # remove pkmn from remote list
 		
 		draft_number = randi() % len(pkmn_data)
 		var draft2 : Pokemon = pkmn_data.pop_at(draft_number)
-		rpc("pop_pkmn_data", draft_number)
 		
-		rset("has_poped_values", true) # allow the client to select its pokemon
+		if is_online:
+			rpc("pop_pkmn_data", draft_number)
+			rset("has_poped_values", true) # allow the client to select its pokemon
 		
 		#remove existing pokemon info UI
 		if len(pokemon_container.get_children()) != 0:
@@ -137,27 +135,29 @@ func select_pkmn():
 		button_selection.button2_text = "Choose " + draft2.a_name
 		var choice = yield(button_selection, "pressed")
 		
-		rset("has_chosen_pkmn", true)
-		yield(self, "has_chosen_pkmn_true") #wait until other has chosen
+		if is_online:
+			rset("has_chosen_pkmn", true)
+			yield(self, "has_chosen_pkmn_true") #wait until other has chosen
 		
 		if choice == 1:
 			selected_pkmn.append(draft1)
 			$SelectedSidebar.set_pokemon(draft1.a_name, draft2.a_name)
-			rpc("set_them_chosen", draft1.export_text(), draft2.export_text())
+			if is_online: rpc("set_them_chosen", draft1.export_text(), draft2.export_text())
 		elif choice == 2:
 			selected_pkmn.append(draft2)
 			$SelectedSidebar.set_pokemon(draft2.a_name, draft1.a_name)
-			rpc("set_them_chosen", draft2.export_text(), draft1.export_text())
+			if is_online: rpc("set_them_chosen", draft2.export_text(), draft1.export_text())
 		
-		rset("has_set_them_choosen", true)
-		yield(self, "has_set_them_choosen_true")
+		if is_online:
+			rset("has_set_them_choosen", true)
+			yield(self, "has_set_them_choosen_true")
 		
 		#reset the waiting
 		has_poped_values = false
 		has_chosen_pkmn = false
 		has_set_them_choosen = false
 		
-		if not is_offline:
+		if is_online:
 			yield(get_tree().create_timer(0.5), "timeout")
 
 
@@ -239,7 +239,7 @@ func user_networking_choice():
 	var choice = yield(button_selection, "pressed")
 	
 	if choice == 2: #offline
-		is_offline = true
+		is_online = false
 		return
 	
 	var is_client : bool = true if choice == 1 else false
