@@ -1,6 +1,7 @@
 # Pokemon Showdown Drafts
 
-A Gnome styled godot app in which to players (on the same network) can select a pokemon team using a draft system.
+A Gnome/Gtk styled Godot app for [Pokemon Showdown](pokemonshowdown.com)!  
+Grab a friend, connect up on a LAN (or do offline mode) and have a Draft-like 1v1 Pokemon Battle competition!
 
 ![image](https://user-images.githubusercontent.com/51231053/169382437-e28c3bb1-44a9-493d-8457-dcc7bd724768.png)
 
@@ -13,6 +14,21 @@ A Gnome styled godot app in which to players (on the same network) can select a 
 4. This is done 3 times, each turn adding 2 pokemon to both teams
 5. Once finished, the team's export text is then displayed and copied to clipboard
 
+
+## Downloads
+Visit the releases page: [github.com/CactiChameleon9/Pokemon-Showdown-Drafts/releases](https://github.com/CactiChameleon9/Pokemon-Showdown-Drafts/releases)
+
+
+## Notable Features
+- Supports up to Gen 9 (_latest gen!_)
+- Modern UI
+- Offline and LAN Modes
+- Official artwork for each pokemon (from @PokeAPI)
+- Pokemon Pools Manager
+  - Add custom pools of Pokemon to draft between
+  - Great selection of included pools (thanks @sleepy-poc)
+  - Select multiple pools to mix them!
+  
 
 ## Building
 Clone the repo with submodules (this will download ~1.4GiB because PokeAPI sprites)
