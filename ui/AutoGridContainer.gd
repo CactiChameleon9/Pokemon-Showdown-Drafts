@@ -101,3 +101,7 @@ func get_node_from_grid(node_path : NodePath) -> Node:
 		return grid_container.get_node(node_path)
 	else:
 		return null
+
+#allow getting array of nodes from the grid (null, no error version)
+func get_nodes_from_grid() -> Array:
+	return grid_container.get_children()

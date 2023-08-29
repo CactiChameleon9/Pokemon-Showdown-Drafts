@@ -8,6 +8,8 @@ var pool_preview_location := "SettingsMenu/PanelContainer/HContainer/ScrollConta
 onready var auto_grid_container := $"%AutoGridContainer"
 onready var confirm_button := $"%ConfirmButton"
 
+var default_pool_location := "res://default-pools"
+
 
 func _ready() -> void:
 	_load_data()
@@ -25,7 +27,7 @@ func get_pokemon_text() -> String:
 	#iterate through all of the pools and use the selected ones for the pokemon text
 	for pool in auto_grid_container.grid_container.get_children():
 		#disclude any non-pool
-		if not "PoolPreview" in pool.name:
+		if not pool.is_in_group("pool_preview"):
 			continue
 		
 		#disclude any not selected
@@ -43,7 +45,7 @@ func _save_data(hide_after : bool = false):
 	#store some values
 	for pool in auto_grid_container.grid_container.get_children():
 		#disclude any non-pool nodes
-		if not "Pool" in pool.name:
+		if not pool.is_in_group("pool_preview"):
 			continue
 		
 		#store the pools and if they are selected in seperate sections
@@ -65,6 +67,7 @@ func _load_data():
 	
 	#return if there are no pools stored
 	if not config.has_section("pokemonpools"):
+		_import_default_pools()
 		return
 	
 	#add all of the pools to the grid container
@@ -137,3 +140,29 @@ func _edit_pool(pool_name):
 		pool.editable = false
 		confirm_button.visible = true
 	
+
+func _import_default_pools():
+	#get list of text files in default pool location
+	var files = []
+	var dir = Directory.new()
+	
+	if dir.open(default_pool_location) == OK:
+		dir.list_dir_begin()
+		
+		var file_name = dir.get_next()
+		while file_name != "":
+			if not (dir.current_is_dir() or file_name.begins_with(".")) and file_name.find(".txt"):
+				files.append(default_pool_location + "/" + file_name)
+			
+			file_name = dir.get_next()
+	
+	#import default pools by name
+	for file_location in files:
+		var file = File.new()
+		file.open(file_location, File.READ)
+		_add_pokemon_pool("", file.get_as_text())
+		file.close()
+	
+	#select one of the poolsget_nodes_from_grid
+	auto_grid_container._move_children_to_grid()
+	auto_grid_container.get_nodes_from_grid()[0].pressed = true
