@@ -1,13 +1,16 @@
-mono_crash*
-cacheDir
-*.apk*
-*.x86_64*
-.git
-.import
-.mono
+# Godot 4+ specific ignores
+.godot/
 
+# Godot-specific ignores
+.import/
 
-assets/Pokemon/*.png
-assets/Pokemon/*.import
-assets/PokemonMini/*.png
-assets/PokemonMini/*.import
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# Export dir
+export/
