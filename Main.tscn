@@ -2097,5 +2097,6 @@ margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="AddressDialog" parent="." instance=ExtResource( 6 )]
+visible = false
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 3 )]
