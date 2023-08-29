@@ -15,14 +15,15 @@ A Gnome styled godot app in which to players (on the same network) can select a 
 
 
 ## Building
-Clone PokeApi's sprites repo into the assets folder:
+Clone the repo with submodules (this will download ~1.4GiB because PokeAPI sprites)
 ```
-cd assets
-git clone https://github.com/PokeAPI/sprites.git
+git clone --recurse-submodules https://github.com/CactiChameleon9/Pokemon-Showdown-Drafts
 ```
-Then build/run the godot project as normal
 
-Note: importing the assets can take a while, not too sure what to do about that.
+Then import the project into **Godot 3** (3.5 is recommended as of now)  
+You can then run/export the project as normal in godot
+
+Note: importing the assets can take a long time - I recommend leaving godot open while you go and make a hot beverage 
 
 ## Contributing
 This is more of a personal project, but I guess if you have any code suggestions... feel free to make a PR and I will think about this more :laugh:

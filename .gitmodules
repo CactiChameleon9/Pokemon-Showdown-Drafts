@@ -1,0 +1,6 @@
+[submodule "default-pools"]
+	path = default-pools
+	url = https://github.com/sleepy-poc/Pokemon-Showdown-Draft-Pools
+[submodule "assets/sprites"]
+	path = assets/sprites
+	url = https://github.com/PokeAPI/sprites.git
