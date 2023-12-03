@@ -1,6 +1,6 @@
 # Pokemon Showdown Drafts
 
-A Gnome/Gtk styled Godot app for [Pokemon Showdown](pokemonshowdown.com)!  
+A Gnome/Gtk styled Godot app for [Pokemon Showdown](https://play.pokemonshowdown.com)!  
 Grab a friend, connect up on a LAN (or do offline mode) and have a Draft-like 1v1 Pokemon Battle competition!
 
 ![image](https://user-images.githubusercontent.com/51231053/169382437-e28c3bb1-44a9-493d-8457-dcc7bd724768.png)
